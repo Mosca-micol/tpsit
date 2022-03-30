@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lancio del dado</title>
+    <style>
+      body {
+        text-align: center;
+        background-image: url(https://img.besthqwallpapers.com/Uploads/20-12-2016/11173/gambling-dice-poker-casino-royal-flush.jpg);
+        background-size: cover;
+      }
+      #lanci {
+        border: solid black 2px;
+        height: 500px;
+        width: 500px;
+        margin: 0 auto;
+        border-radius: 25px;
+        padding: 10px;
+        box-shadow: 10px 10px 10px 5px;
+        background-color: #3f37c9;
+      }
+      #lanci:hover {
+        background-color: #7209b7;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Simulazione di lancio dadi per 1000 volte</h2>
+    <h3>Colorare in rosso se il numero è == 6</h3>
+    <div id="lanci">
+
+
+    <script>
+      let dado = 0;
+      let casuale = 0;
+      let occorrenza1 = 0;
+      let occorrenza2 = 0;
+      let occorrenza3 = 0;
+      let occorrenza4 = 0;
+      let occorrenza5 = 0;
+      let occorrenza6 = 0;
+
+      for (let i = 0; i < 1000; i++) {
+        do {
+          dado = Math.round(Math.random() * 7);
+        } while (dado == 0 || dado == 7);
+
+        if (dado == 6) {
+          document.write("<span style='color:red'>" + dado + "</span>" + " ");
+          occorrenza6++;
+        } else {
+          document.write(dado + " ");
+
+          if (dado == 1) {
+            occorrenza1++;
+          }
+          if (dado == 2) {
+            occorrenza2++;
+          }
+          if (dado == 3) {
+            occorrenza3++;
+          }
+          if (dado == 4) {
+            occorrenza4++;
+          }
+          if (dado == 5) {
+            occorrenza5++;
+          }
+        }
+      }
+      
+      document.write("</div>");
+      document.write("<hr>");
+      document.write("<br>"+"<span style='color:white'>" + occorrenza1 + " volte è uscito il 1 "+"</span>");
+      document.write("<br>"+"<span style='color:white'>" + occorrenza2 + " volte è uscito il 2 "+"</span>");
+      document.write("<br>"+"<span style='color:white'>" + occorrenza3 + " volte è uscito il 3 "+"</span>");
+      document.write("<br>"+"<span style='color:white'>" + occorrenza4 + " volte è uscito il 4 "+"</span>");
+      document.write("<br>"+"<span style='color:white'>" + occorrenza5 + " volte è uscito il 5 "+"</span>");
+      document.write(
+        "<br>" +
+          "<span style='color:red !important'>" +
+          occorrenza6 +
+          
+          " volte è uscito il 6 "+
+          "</span>" 
+      );
+
+      document.write("<br>" + i + " lanci del dado ");
+    </script>
+  </body>
+</html>
