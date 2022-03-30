@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lancio del dado</title>
+    <style>
+      body {
+        text-align: center;
+        background-image: url(https://img.besthqwallpapers.com/Uploads/20-12-2016/11173/gambling-dice-poker-casino-royal-flush.jpg);
+        background-size: cover;
+      }
+      p {
+        color: yellow;
+        font-size: xx-large;
+      }
+      #mainDiv {
+        display: flex;
+      }
+
+      #lanci,
+      #lanci2 {
+        border: solid black 2px;
+        height: 500px;
+        width: 500px;
+        margin: 0 auto;
+        border-radius: 25px;
+        padding: 10px;
+        box-shadow: 10px 10px 10px 5px;
+        background-color: #3f37c9;
+      }
+      #lanci:hover,
+      #lanci2:hover {
+        background-color: #7209b7;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Simulazione di lancio dadi per 1000 volte</h2>
+    <h3>Colorare in rosso se è presente una coppia</h3>
+    <div id="mainDiv">
+      <div id="lanci"></div>
+      <div id="lanci2"></div>
+    </div>
+
+    <script>
+      let trovato = false;
+      let dadiUsciti = new Array();
+      let dado = 0;
+      let dadiUsciti2 = new Array();
+      let dado2 = 0;
+      let occorrenza1 = 0;
+      let occorrenza2 = 0;
+      let occorrenza3 = 0;
+      let occorrenza4 = 0;
+      let occorrenza5 = 0;
+      let occorrenza6 = 0;
+      let coppieTrovate = 0;
+
+      /*per il primo dado*/
+      for (let i = 0; i < 1000; i++) {
+        do {
+          dado = Math.round(Math.random() * 7);
+        } while (dado == 0 || dado == 7);
+        dadiUsciti.push(dado);
+
+        if (dado == 6) {
+          occorrenza6++;
+        }
+        if (dado == 1) {
+          occorrenza1++;
+        }
+        if (dado == 2) {
+          occorrenza2++;
+        }
+        if (dado == 3) {
+          occorrenza3++;
+        }
+        if (dado == 4) {
+          occorrenza4++;
+        }
+        if (dado == 5) {
+          occorrenza5++;
+        }
+      }
+      for (let i = 0; i < 1000; i++) {
+        trovato = false;
+        var facciaUscita = document.createElement("span");
+
+        if (i != dadiUsciti.length - 1) {
+          if (dadiUsciti[i + 0] == dadiUsciti[i + 1]) {
+            facciaUscita.innerHTML =
+              "<span style='color:red'>" + dadiUsciti[i] + " " + "</span>";
+            document.getElementById("lanci").appendChild(facciaUscita);
+            trovato = true;
+          }
+        }
+        if (i > 0) {
+          if (dadiUsciti[i + 0] == dadiUsciti[i - 1] && trovato == false) {
+            facciaUscita.innerHTML =
+              "<span style='color:red'>" + dadiUsciti[i] + " " + "</span>";
+            document.getElementById("lanci").appendChild(facciaUscita);
+            trovato = true;
+          }
+        }
+        if (trovato == false) {
+          facciaUscita.innerHTML = dadiUsciti[i] + " ";
+
+          document.getElementById("lanci").appendChild(facciaUscita);
+        }
+        if (trovato == true) {
+          coppieTrovate++;
+        }
+      }
+      /*per il secondo dado*/
+      for (let i = 0; i < 1000; i++) {
+        do {
+          dado2 = Math.round(Math.random() * 7);
+        } while (dado2 == 0 || dado2 == 7);
+        dadiUsciti2.push(dado2);
+
+        if (dado2 == 6) {
+          occorrenza6++;
+        }
+        if (dado2 == 1) {
+          occorrenza1++;
+        }
+        if (dado2 == 2) {
+          occorrenza2++;
+        }
+        if (dado2 == 3) {
+          occorrenza3++;
+        }
+        if (dado2 == 4) {
+          occorrenza4++;
+        }
+        if (dado2 == 5) {
+          occorrenza5++;
+        }
+      }
+
+      for (let i = 0; i < 1000; i++) {
+        trovato = false;
+        var facciaUscita = document.createElement("span");
+
+        if (i != dadiUsciti2.length - 1) {
+          if (dadiUsciti2[i + 0] == dadiUsciti2[i + 1]) {
+            facciaUscita.innerHTML =
+              "<span style='color:red'>" + dadiUsciti2[i] + " " + "</span>";
+            document.getElementById("lanci2").appendChild(facciaUscita);
+            trovato = true;
+          }
+        }
+        if (i > 0) {
+          if (dadiUsciti2[i + 0] == dadiUsciti2[i - 1] && trovato == false) {
+            facciaUscita.innerHTML =
+              "<span style='color:red'>" + dadiUsciti2[i] + " " + "</span>";
+            document.getElementById("lanci2").appendChild(facciaUscita);
+            trovato = true;
+          }
+        }
+        if (trovato == false) {
+          facciaUscita.innerHTML = dadiUsciti2[i] + " ";
+
+          document.getElementById("lanci2").appendChild(facciaUscita);
+        }
+        if (trovato == true) {
+          coppieTrovate++;
+        }
+      }
+      if (coppieTrovate > 10) {
+        var haiVinto = document.createElement("p");
+        haiVinto.innerHTML =
+          '"HAI VINTO, le coppie in totale sono più di 10!!!"';
+        document.body.appendChild(haiVinto);
+      }
+
+      document.write("<hr>");
+      document.write(
+        "<br>" +
+          "<span style='color:yellow'>" +
+          occorrenza1 +
+          " volte è uscito il 1 " +
+          "</span>"
+      );
+      document.write(
+        "<br>" +
+          "<span style='color:yellow'>" +
+          occorrenza2 +
+          " volte è uscito il 2 " +
+          "</span>"
+      );
+      document.write(
+        "<br>" +
+          "<span style='color:yellow'>" +
+          occorrenza3 +
+          " volte è uscito il 3 " +
+          "</span>"
+      );
+      document.write(
+        "<br>" +
+          "<span style='color:yellow'>" +
+          occorrenza4 +
+          " volte è uscito il 4 " +
+          "</span>"
+      );
+      document.write(
+        "<br>" +
+          "<span style='color:yellow'>" +
+          occorrenza5 +
+          " volte è uscito il 5 " +
+          "</span>"
+      );
+      document.write(
+        "<br>" +
+          "<span style='color:yellow'>" +
+          occorrenza6 +
+          " volte è uscito il 6 " +
+          "</span>"
+      );
+    </script>
+  </body>
+</html>
