@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+//SERVE PER LA PARTE GRAFICA DELLA FLIP CARD.
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+//INDICA COME DEV'ESSERE LA PARTE GRAFICA DEL RETRO DELLA FLIP CARD
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+//MI DICE DI QUANTO DEVE RUOTARE LA FLIP CARD
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+//DESCRIVE LA PARTE GRAFICA DI ENTRAMBE LE FACCIE DELA FLIP CARD, MI SPECIFICA CHE QUANDO GUARDO UNA FACCIA L'ALTRA NON È VISIBILE.
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+//IL BACKGROUND-COLOR, DELLA PARTE ANTERIORE DELLA FLIP-CARD, SARÀ GRIGIO E IL TESTO NERO.
+
+.flip-card-back {
+  background-color: #b929a3;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+//IL BACKGROUND-COLOR, DELLA PARTE POSTERIORE DELLA FLIP-CARD, SARÀ ROSA E IL TESTO NERO. 
+//"TRANSFORM: RORTATEY(180DEG);" DICE ALLA CARTA DI RUOTARSI DI 180°
+
+</style>
+</head>
+<body>
+
+
+<h1>Album di classe</h1>
+//È IL TITOLO
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="foto.jpg" alt="Avatar" style="width:300px;height:300px;">
+    </div>
+    <div class="flip-card-back">
+      <h1>Micol Mosca</h1> 
+      <p>Nichelino</p> 
+      <p>16 anni</p>
+      <p>3 BIT</p>
+      <p>J.C. Maxwell</p>
+      <button>Default Button</button>
+<a href="http://www.marcopalladino.it/it/" class="marco palladino"></a>
+<button class="button">Button</button>
+<input type="botton" class="botton" value="marco palladino">
+    </div>
+  </div>
+</div>
+
+//STIAMO INSERENDO LE VARIE INFORMAZIONI ALL'INTERNO DELLA FLIP-CARD
+
+</body>
+</html>
